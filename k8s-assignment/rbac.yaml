@@ -1,0 +1,53 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: boutique-reader
+  namespace: online-boutique
+rules:
+- apiGroups: [""]
+  resources: ["configmaps", "secrets"]
+  verbs: ["get", "list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: boutique-reader-binding
+  namespace: online-boutique
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: boutique-reader
+subjects:
+- kind: ServiceAccount
+  name: frontend
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: cartservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: checkoutservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: currencyservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: emailservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: paymentservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: productcatalogservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: recommendationservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: shippingservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: adservice
+  namespace: online-boutique
+- kind: ServiceAccount
+  name: loadgenerator
+  namespace: online-boutique
